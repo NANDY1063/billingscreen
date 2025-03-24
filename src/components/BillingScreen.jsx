@@ -8,10 +8,14 @@ export default function App() {
   const toggleCashDenominationModal = () => {
     setShowCashDenominationModal(!showCashDenominationModal);
   };
+  const [showPaymentSummary, setShowPaymentSummary] = useState(false);
+  const handlePaidClick = () => {
+    setShowPaymentSummary(true);
+  };
 return (
 <>
   <div className="row bg-primary">
-  <div className="col-md-12 d-flex justify-content-center align-item-center">
+  <div className="col-md-12 py-2 d-flex justify-content-center align-item-center">
     <button className="btn btn-primary me-4"><i className="fas fa-home"></i></button>
     <button className="btn btn-primary me-4">Stk F1</button>
     <button className="btn btn-primary me-4">Last Bit F2</button>
@@ -30,7 +34,7 @@ return (
 <div className="row">
   
   {/* Billing Section (55%) */}  
-  <div className="col-md-7 bg-light p-3" style={{border:'1px solid #ccc' }}>
+  <div className="col-md-7 bg-light p-3 h-100"  style={{border:'1px solid #ccc' }}>
     <h6 className='text-center '>Billing Screen</h6>
     <div className="col-md-12">
       <ul className="nav nav-tabs mb-3">
@@ -278,101 +282,154 @@ return (
       </div>
     </div>
           
-    {/* Cash Denomination */}
+    {/* Cash Denomination Button*/}
     {showCashDenominationModal && (
-            <div className="modal fade show" style={{ display: 'block', position: 'fixed' }}>
-              <div className="modal-dialog modal-lg">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title">Cash Denomination</h5>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      aria-label="Close"
-                      onClick={toggleCashDenominationModal}
-                    ></button>
-                  </div>
-                  <div className="modal-body">
-                    <table className="table table-bordered">
-                      <tbody>
-                        <tr>
-                          <td>₹500</td>
-                          <td>x</td>
-                          <td>
-                            <input type="number" className="form-control" readOnly />
-                          </td>
-                          <td>₹0</td>
-                        </tr>
-                        <tr>
-                          <td>₹200</td>
-                          <td>x</td>
-                          <td>
-                            <input type="number" className="form-control" readOnly />
-                          </td>
-                          <td>₹0</td>
-                        </tr>
-                        <tr>
-                          <td>₹100</td>
-                          <td>x</td>
-                          <td>
-                            <input type="number" className="form-control" readOnly />
-                          </td>
-                          <td>₹0</td>
-                        </tr>
-                        <tr>
-                          <td>₹50</td>
-                          <td>x</td>
-                          <td>
-                            <input type="number" className="form-control" readOnly />
-                          </td>
-                          <td>₹0</td>
-                        </tr>
-                        <tr>
-                          <td>₹20</td>
-                          <td>x</td>
-                          <td>
-                            <input type="number" className="form-control" readOnly />
-                          </td>
-                          <td>₹0</td>
-                        </tr>
-                        <tr>
-                          <td>₹10</td>
-                          <td>x</td>
-                          <td>
-                            <input type="number" className="form-control" readOnly />
-                          </td>
-                          <td>₹0</td>
-                        </tr>
-                        <tr>
-                          <td>Coins</td>
-                          <td>x</td>
-                          <td>
-                            <input type="number" className="form-control" readOnly />
-                          </td>
-                          <td>₹0</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <div className="text-center mt-3">
-                      <span>Total Amount: ₹0</span>
-                    </div>
-                  </div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" onClick={toggleCashDenominationModal}>
-                      Close
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+    <div className="modal fade show" style={{ display: 'block', position: 'fixed' }}>
+      <div className="modal-dialog modal-lg">
+      <div className="modal-content">
+      <div className="modal-header">
+        <h6 className="modal-title">Cash Denomination</h6>
+        <h6 className="modal-title ms-auto">Other Payment Methods</h6>
+        <button type="button"  className="btn-close" aria-label="Close" onClick={toggleCashDenominationModal}></button>
+      </div>                
+      <div className="modal-body">
+      <div className="row">
+        {/* Cash Denomination */}
+        <div className="col-md-6">
+        <table className="table table-bordered"><tbody>
+          <tr>
+            <td>₹500</td>
+            <td>x</td>
+            <td><input type="number" className="form-control" readOnly /></td>
+            <td>₹0</td>
+          </tr>
+          <tr>
+            <td>₹200</td>
+            <td>x</td>
+            <td><input type="number" className="form-control" readOnly /></td>
+            <td>₹0</td>
+          </tr>
+          <tr>
+            <td>₹100</td>
+            <td>x</td>
+            <td><input type="number" className="form-control" readOnly /></td>
+            <td>₹0</td>
+          </tr>
+          <tr>
+            <td>₹50</td>
+            <td>x</td>
+            <td><input type="number" className="form-control" readOnly /></td>
+            <td>₹0</td>
+          </tr>
+          <tr>
+            <td>₹20</td>
+            <td>x</td>
+            <td><input type="number" className="form-control" readOnly /></td>
+            <td>₹0</td>
+          </tr>
+          <tr>
+            <td>₹10</td>
+            <td>x</td>
+            <td><input type="number" className="form-control" readOnly /></td>
+            <td>₹0</td>
+          </tr>
+          <tr>
+            <td>Coins</td>
+            <td>x</td>
+            <td><input type="number" className="form-control" readOnly /></td>
+            <td>₹0</td>
+          </tr>
+        </tbody></table>
+        </div>
+
+        {/* Other Payment Methods */}
+        <div className="col-md-6">
+        <table className="table table-bordered"><tbody>
+          <tr>
+            <td>Ad-Recd</td>
+            <td><input type="text" className="form-control" /></td>
+          </tr>
+          <tr>
+            <td>Ad-Return</td>
+            <td><input type="text" className="form-control" /></td>
+          </tr>
+          <tr>
+            <td>Gift Voucher</td>
+            <td><input type="text" className="form-control" /></td>
+          </tr>
+          <tr>
+            <td>Card </td>
+            <td><input type="text" className="form-control" /></td>
+          </tr>
+          <tr>
+            <td>Cheque/DD</td>
+            <td><input type="text" className="form-control" /></td>
+          </tr>
+          <tr>
+            <td>Dly Incentive Issue</td>
+            <td><input type="text" className="form-control" /></td>
+          </tr>
+          <tr>
+            <td>Staff Purchase</td>
+            <td><input type="text" className="form-control" /></td>
+          </tr>                       
+          <tr>
+            <td>UPI Amount</td>
+            <td><input type="text" className="form-control" /></td>
+          </tr>               
+        </tbody></table>
         </div>
       </div>
+      <div className="text-center mt-3">
+        <span>Total Amount: ₹0</span>
+      </div>
+      </div>
+      <div className="modal-footer">
+        <button className='btn btn-success'> Save</button>
+        <button type="button" className="btn btn-secondary" onClick={toggleCashDenominationModal}>Close</button>
+      </div>
+      </div>
+      </div>
+      </div>
+    )}
+    <button className='btn btn-success mt-5'onClick={handlePaidClick}> Paid</button>
+    <button className='btn btn-warning ms-5 mt-5'> Cancel</button>
+
+    {showPaymentSummary && (
+    <div className="mt-4">
+      <h6>Payment Summary</h6>
+      <table className="table table-bordered">
+      <thead><tr>
+        <th>Cash</th>
+        <th>Online</th>
+      </tr></thead>
+      <tbody>
+      <tr>
+        <td>Received Amount</td>
+        <td>Payment Device</td>
+      </tr>
+      <tr>
+        <td>Balance Amount</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>To Pay Online</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colSpan="2" className="text-center">Total Amount</td>
+      </tr>
+    </tbody></table>
+    <button className='btn btn-primary'> To Pay</button>
+    </div>
+    )}
+    </div>
+    </div>
 
     {/* Footer */}
-    <div className="text-center mt-5">
-      <p>Copyright © Space Textiles [P] Ltd</p>
-    </div>
+    <footer className="footer bg-primary text-white text-center py-1 fixed-bottom shadow-lg" style={{ zIndex: 1000 }}>
+      <p className="mb-0">Copyright © Space Textiles [P] Ltd</p>
+    </footer>
 </>
 );
 }
