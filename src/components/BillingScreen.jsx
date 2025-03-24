@@ -8,10 +8,7 @@ export default function App() {
   const toggleCashDenominationModal = () => {
     setShowCashDenominationModal(!showCashDenominationModal);
   };
-  const [showPaymentSummary, setShowPaymentSummary] = useState(false);
-  const handlePaidClick = () => {
-    setShowPaymentSummary(true);
-  };
+
 return (
 <>
   <div className="row bg-primary">
@@ -65,15 +62,15 @@ return (
         </div>
         <div className="col-md-2 mb-3">
           <label className="form-label">Purchase Value</label>
-          <input type="text" className="form-control" value="0" readOnly />
+          <input type="text" className="form-control" value="0"   />
         </div>
         <div className="col-md-2 mb-3">
           <label className="form-label">Pending GV Value</label>
-          <input type="text" className="form-control" value="0" readOnly />
+          <input type="text" className="form-control" value="0"   />
         </div>
         <div className="col-md-2 mb-3">
               <label className="form-label">No of Pac</label>
-              <input type="text" className="form-control" value="0" readOnly />
+              <input type="text" className="form-control" value="0"   />
         </div>
       </>
       )}
@@ -215,16 +212,14 @@ return (
           
     {/* Total Summary */}
     <div className="row mt-5">
-      <div className="col-md-4">
+      <div className="col-md-6 text-start">
+        <span>Total Qty : 0</span>
+        <span className="ms-3">Total Value : ₹ 0</span>
+        <span className='ms-3'>Total Net Amount : ₹ 0</span>
+      </div>
+      <div className="col-md-6 text-end">
         <button className="btn btn-success me-5">Submit</button>
         <button className="btn btn-danger me-5">Cancel</button>
-      </div>
-      <div className="col-md-8 text-start">
-        <span>Discount : </span>
-        <span className="ms-5">Discount Value :</span>
-        <span className="ms-5" >Gift Vocher :</span>
-        <span className="ms-5">Total Qty : 0</span>
-        <span className="ms-5">Total Value : ₹0</span>
       </div>
     </div>
 
@@ -232,12 +227,13 @@ return (
       <div className="col-md-3 mt-5">
       <h6> Previous Bill</h6>
         <label className="form-label">Bill Number</label>
-        <input type="text" className="form-control" value=" " readOnly />
+        <input type="text" className="form-control" value=" "   />
       </div>
       <div className="col-md-3 mt-4">
         <label className="form-label mt-5">Bill Date</label>
-        <input type="text" className="form-control" value="  " readOnly />
+        <input type="text" className="form-control" value="  "   />
       </div>
+     
     </div>
   </div>
                
@@ -249,7 +245,7 @@ return (
       <h6 className='text-center'>Payment</h6>
       <div className="col-md-6">
         <label className="form-label">Scan Bill</label>
-        <input type="text" className="form-control" placeholder="Scan Bill" readOnly />
+        <input type="text" className="form-control" placeholder="Scan Bill"   />
       </div>
     </div>
           
@@ -274,14 +270,6 @@ return (
       </tr></tbody>
     </table>
           
-    {/* Buttons */}
-    <div className="row mt-4">
-      <div className="d-flex justify-content-end gap-2">
-        <button className="btn btn-warning me-5" onClick={toggleCashDenominationModal}> Cash Denomination</button>
-        <button className="btn btn-success">Advance</button>
-      </div>
-    </div>
-          
     {/* Cash Denomination Button*/}
     {showCashDenominationModal && (
     <div className="modal fade show" style={{ display: 'block', position: 'fixed' }}>
@@ -300,43 +288,43 @@ return (
           <tr>
             <td>₹500</td>
             <td>x</td>
-            <td><input type="number" className="form-control" readOnly /></td>
+            <td><input type="number" className="form-control" /></td>
             <td>₹0</td>
           </tr>
           <tr>
             <td>₹200</td>
             <td>x</td>
-            <td><input type="number" className="form-control" readOnly /></td>
+            <td><input type="number" className="form-control"   /></td>
             <td>₹0</td>
           </tr>
           <tr>
             <td>₹100</td>
             <td>x</td>
-            <td><input type="number" className="form-control" readOnly /></td>
+            <td><input type="number" className="form-control"   /></td>
             <td>₹0</td>
           </tr>
           <tr>
             <td>₹50</td>
             <td>x</td>
-            <td><input type="number" className="form-control" readOnly /></td>
+            <td><input type="number" className="form-control"   /></td>
             <td>₹0</td>
           </tr>
           <tr>
             <td>₹20</td>
             <td>x</td>
-            <td><input type="number" className="form-control" readOnly /></td>
+            <td><input type="number" className="form-control"   /></td>
             <td>₹0</td>
           </tr>
           <tr>
             <td>₹10</td>
             <td>x</td>
-            <td><input type="number" className="form-control" readOnly /></td>
+            <td><input type="number" className="form-control"   /></td>
             <td>₹0</td>
           </tr>
           <tr>
             <td>Coins</td>
             <td>x</td>
-            <td><input type="number" className="form-control" readOnly /></td>
+            <td><input type="number" className="form-control"   /></td>
             <td>₹0</td>
           </tr>
         </tbody></table>
@@ -392,10 +380,7 @@ return (
       </div>
       </div>
     )}
-    <button className='btn btn-success mt-5'onClick={handlePaidClick}> Paid</button>
-    <button className='btn btn-warning ms-5 mt-5'> Cancel</button>
-
-    {showPaymentSummary && (
+  
     <div className="mt-4">
       <h6>Payment Summary</h6>
       <table className="table table-bordered">
@@ -405,31 +390,35 @@ return (
       </tr></thead>
       <tbody>
       <tr>
-        <td>Received Amount</td>
-        <td>Payment Device</td>
+        <td>Received Amount <input type="number" id="receivedAmount" className="form-control" placeholder="Enter Received Amount" /></td>
+        <td>Payment Device
+        </td>
       </tr>
       <tr>
-        <td>Balance Amount</td>
-        <td></td>
+        <td>Balance Amount <input type="number" id="receivedAmount" className="form-control" placeholder="Enter Received Amount" /></td>
+        <td>To Pay Online <input type="number" id="receivedAmount" className="form-control" placeholder="Enter Received Amount" /> </td>
       </tr>
       <tr>
-        <td>To Pay Online</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td colSpan="2" className="text-center">Total Amount</td>
-      </tr>
+        <td className="text-center">Total Amount </td>
+        <td><input type="number" id="receivedAmount" className="form-control" placeholder="Enter Total Amount" /></td>
+      </tr>      
     </tbody></table>
-    <button className='btn btn-primary'> To Pay</button>
-    </div>
-    )}
-    </div>
     </div>
 
-    {/* Footer */}
-    <footer className="footer bg-primary text-white text-center py-1 fixed-bottom shadow-lg" style={{ zIndex: 1000 }}>
-      <p className="mb-0">Copyright © Space Textiles [P] Ltd</p>
-    </footer>
+    {/* Buttons */}
+    <div className="row mt-4">
+      <div className=" d-flex justify-content-end gap-2">
+        <button className="btn btn-warning " onClick={toggleCashDenominationModal}> Cash Denomination</button>
+        <button className="btn btn-warning ">Advance</button>
+        <button className='btn btn-success' > Paid</button>
+        <button className='btn btn-danger '> Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer className="footer bg-primary text-white text-center py-1 fixed-bottom shadow-lg" style={{ zIndex: 1000 }}>
+  <p className="mb-0">Copyright © Space Textiles [P] Ltd</p>
+</footer>
 </>
 );
 }
