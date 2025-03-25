@@ -68,10 +68,7 @@ return (
           <label className="form-label">Pending GV Value</label>
           <input type="text" className="form-control" value="0"   />
         </div>
-        <div className="col-md-2 mb-3">
-              <label className="form-label">No of Pac</label>
-              <input type="text" className="form-control" value="0"   />
-        </div>
+      
       </>
       )}
       {activeTab === 'Gift' && (
